@@ -4,6 +4,16 @@
 <meta charset="utf-8">
 <title>Blockly Generator Tests</title>
 <script src="../../blockly_uncompressed.js"></script>
+<script src="../../generators/arduino.js"></script>
+<script src="unittest_arduino.js"></script>
+<script src="../../generators/arduino/logic.js"></script>
+<script src="../../generators/arduino/loops.js"></script>
+<script src="../../generators/arduino/math.js"></script>
+<script src="../../generators/arduino/text.js"></script>
+<script src="../../generators/arduino/lists.js"></script>
+<script src="../../generators/arduino/colour.js"></script>
+<script src="../../generators/arduino/variables.js"></script>
+<script src="../../generators/arduino/procedures.js"></script>
 
 <script src="../../generators/javascript.js"></script>
 <script src="unittest_javascript.js"></script>
@@ -223,6 +233,12 @@ function toXml() {
   setOutput(xmlText);
 }
 
+function toArduino() {
+  var code = '\'use strict\';\n\n'
+  code += Blockly.Arduino.workspaceToCode(demoWorkspace);
+  setOutput(code);
+}
+
 function toJavaScript() {
   var code = '\'use strict\';\n\n'
   code += Blockly.JavaScript.workspaceToCode(demoWorkspace);
@@ -425,6 +441,9 @@ h1 {
     <p>
       Generate:
       <input type="button" value="XML" onclick="toXml()">
+      <div style="display: inline-block;">
+        <input type="button" value="Arduino" onclick="toArduino()">
+      </div>
       <div style="display: inline-block;">
         <input type="button" value="JavaScript" onclick="toJavaScript()">
         <br><a target="_blank" href="https://repl.it/languages/javascript">interpreter</a>
